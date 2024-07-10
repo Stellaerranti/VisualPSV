@@ -23,7 +23,7 @@ namespace VisualPSV
 
         }
 
-        //Get normmal distibution using a Box-Muller transform
+        //Get normmal distibution using a   
         private double RandomNormal(double mean, double std) 
         {
             Random rand = new Random(); //reuse this if you are generating many
@@ -93,6 +93,8 @@ namespace VisualPSV
 
             return gh;
         }
+
+
 
     }
 }
