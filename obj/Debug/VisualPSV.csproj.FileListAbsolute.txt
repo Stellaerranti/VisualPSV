@@ -1,0 +1,10 @@
+C:\Users\Rudko\Documents\GitHub\VisualPSV\VisualPSV\bin\Debug\VisualPSV.exe.config
+C:\Users\Rudko\Documents\GitHub\VisualPSV\VisualPSV\bin\Debug\VisualPSV.exe
+C:\Users\Rudko\Documents\GitHub\VisualPSV\VisualPSV\bin\Debug\VisualPSV.pdb
+C:\Users\Rudko\Documents\GitHub\VisualPSV\VisualPSV\obj\Debug\VisualPSV.csproj.AssemblyReference.cache
+C:\Users\Rudko\Documents\GitHub\VisualPSV\VisualPSV\obj\Debug\VisualPSV.Form1.resources
+C:\Users\Rudko\Documents\GitHub\VisualPSV\VisualPSV\obj\Debug\VisualPSV.Properties.Resources.resources
+C:\Users\Rudko\Documents\GitHub\VisualPSV\VisualPSV\obj\Debug\VisualPSV.csproj.GenerateResource.cache
+C:\Users\Rudko\Documents\GitHub\VisualPSV\VisualPSV\obj\Debug\VisualPSV.csproj.CoreCompileInputs.cache
+C:\Users\Rudko\Documents\GitHub\VisualPSV\VisualPSV\obj\Debug\VisualPSV.exe
+C:\Users\Rudko\Documents\GitHub\VisualPSV\VisualPSV\obj\Debug\VisualPSV.pdb

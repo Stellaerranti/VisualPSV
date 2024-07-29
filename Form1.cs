@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -104,6 +106,8 @@ namespace VisualPSV
             List<double> gh = new List<double>();
             List<double> sv = new List<double>();
 
+            List<double> vecCoords = new List<double>();
+
             double lat = 60;
             double lon = 60;
 
@@ -118,16 +122,21 @@ namespace VisualPSV
             {
                 gh = getCoeffsTK03(8, 18e3,0,0, 3.8, 2.4);
                 
+                while (gh.Count < 120)
+                {gh.Add(0);}
+
                 for (int i =0; i<gh.Count;i++)
                 { sv.Add(0); }
 
                 colat = 90 - lat;
 
+                vecCoords = getCoords(gh, sv, 0, 0, 1, 0, colat, lon);
 
-
-
+                File.AppendAllText("test.txt", vecCoords[0].ToString("F4") +" " + vecCoords[1].ToString("F4") + " " + vecCoords[2].ToString("F4") + " " + vecCoords[3].ToString("F4")+ "\n");
                 k++;
             }
+
+
 
             /*
              
@@ -170,9 +179,9 @@ namespace VisualPSV
             
             double s10 = s1 * beta;
 
-            gh.Add(RandomNormal(G1,s1));
+            gh.Add(RandomNormal(G1,s10));
             gh.Add(RandomNormal(0,s1));
-            gh.Add(RandomNormal(0, s10));
+            gh.Add(RandomNormal(0, s1));
 
             double s = 0;
             double o = 0;
@@ -210,8 +219,8 @@ namespace VisualPSV
             double x,y,z,f;
             x=y=z=f= 0;
 
-            double[] p = new double[60];
-            double[] q = new double[60];
+            double[] p = new double[66];
+            double[] q = new double[66];
             double[] sl = new double[10];
             double[] cl = new double[10];
 
@@ -271,10 +280,10 @@ namespace VisualPSV
                 
                 rho = Math.Sqrt(three);
 
-                r = Math.Sqrt(r * (r+2*rho) + ((a2-one+b2*two)/three));
+                r = Math.Sqrt(r * (r+2*rho) + ((a2*one+b2*two)/three));
 
                 cd = (altitude + rho) / r;
-                sd = ct*(a2 - b2)/rho*st/r;
+                sd = (a2 - b2)/ ct * rho *st/r;
 
                 one = ct;
                 ct = ct * cd - st * sd;
@@ -314,7 +323,7 @@ namespace VisualPSV
                         q[k] = one * (st * q[j]+ ct * p[j]);
 
                         cl[m - 1] = cl[m - 2] * cl[0] - sl[m - 2] * sl[0];
-                        cl[m - 1] = sl[m - 2] * cl[0] - sl[m - 2] * sl[0];
+                        cl[m - 1] = sl[m - 2] * cl[0] + cl[m - 2] * sl[0];
                     }
                     else 
                     {
@@ -336,7 +345,8 @@ namespace VisualPSV
 
                 if(m != 0)
                 {
-                    two = (gh[l] + sv[ll + l] * t) * rr;                    
+                    //two = (gh[l] + sv[ll + l] * t) * rr;
+                    two = gh[l] * rr;
                     three = one * cl[m - 1] + two * sl[m - 1];
 
                     x = x + three * q[k];
